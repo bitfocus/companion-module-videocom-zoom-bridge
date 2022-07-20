@@ -1,11 +1,11 @@
 {
-  "name": "videocom-zoom-bridge",
-  "version": "1.0.0",
+	"name": "videocom-zoom-bridge",
+	"version": "1.0.0",
 	"api_version": "1.0.0",
 	"main": "dist/index.js",
-  "repository": "https://github.com/bitfocus/companion-module-videocom-zoom-bridge.git",
-  "author": "JeffreyDavidsz <jeffrey.davidsz@vicreo.eu>",
-  "license": "MIT",
+	"repository": "https://github.com/bitfocus/companion-module-videocom-zoom-bridge.git",
+	"author": "JeffreyDavidsz <jeffrey.davidsz@vicreo.eu>",
+	"license": "MIT",
 	"scripts": {
 		"dev": "yarn build:watch",
 		"build": "npx rimraf dist && npx typescript@~4.5.5 -p tsconfig.build.json",
@@ -19,7 +19,9 @@
 		"url": "https://github.com/bitfocus/companion-module-videocom-zoom-bridge/issues"
 	},
 	"manufacturer": "videocom",
-	"product": ["Zoom Bridge"],
+	"product": [
+		"Zoom Bridge"
+	],
 	"shortname": "zoombridge",
 	"description": "Zoom Bridge NDI plugin for companion ",
 	"keywords": [
@@ -28,7 +30,8 @@
 	],
 	"dependencies": {
 		"@types/lodash": "^4.14.178",
-		"lodash": "^4.17.21"
+		"lodash": "^4.17.21",
+		"urllib": "^3.0.4"
 	},
 	"devDependencies": {
 		"@types/jest": "^27.4.0",
@@ -60,4 +63,3 @@
 		"/tests/*.test.ts"
 	]
 }
-
