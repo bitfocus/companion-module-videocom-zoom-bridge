@@ -103,6 +103,28 @@ export function getActions(instance: ZoomBridgeInstance): CompanionActions {
 				sendActionCommand(sendToCommand)
 			},
 		},
+		StartNewBridge: {
+			label: 'Start a (new) Bridge',
+			options: [
+				{
+					type: 'number',
+					label: 'Bridge',
+					id: 'bridgeID',
+					min: 1,
+					max: 6,
+					default: 1,
+				},
+			],
+			callback: (action) => {
+				const sendToCommand: any = {
+					id: 'StartBridge',
+					options: {
+						command: `bridge/${action.options.bridgeID}/start`,
+					},
+				}
+				sendActionCommand(sendToCommand)
+			},
+		},
 		StopBridge: {
 			label: 'Stop Bridge',
 			options: [
@@ -150,27 +172,27 @@ export function getActions(instance: ZoomBridgeInstance): CompanionActions {
 				sendActionCommand(sendToCommand)
 			},
 		},
-		BridgeById: {
-			label: 'Bridge by id',
-			options: [
-				{
-					type: 'dropdown',
-					label: 'Bridge',
-					id: 'bridgeID',
-					default: '1',
-					choices: CHOICES_BRIDGES,
-				},
-			],
-			callback: (action) => {
-				const sendToCommand: any = {
-					id: 'BridgeById',
-					options: {
-						command: `bridge/${action.options.bridgeID}`,
-					},
-				}
-				sendActionCommand(sendToCommand)
-			},
-		},
+		// BridgeById: {
+		// 	label: 'Bridge by id',
+		// 	options: [
+		// 		{
+		// 			type: 'dropdown',
+		// 			label: 'Bridge',
+		// 			id: 'bridgeID',
+		// 			default: '1',
+		// 			choices: CHOICES_BRIDGES,
+		// 		},
+		// 	],
+		// 	callback: (action) => {
+		// 		const sendToCommand: any = {
+		// 			id: 'BridgeById',
+		// 			options: {
+		// 				command: `bridge/${action.options.bridgeID}`,
+		// 			},
+		// 		}
+		// 		sendActionCommand(sendToCommand)
+		// 	},
+		// },
 		PinParticipantOnBridge: {
 			label: 'Pin participant on bridge',
 			options: [
