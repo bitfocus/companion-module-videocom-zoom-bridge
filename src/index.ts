@@ -3,7 +3,7 @@ import {
 	CompanionActions,
 	CompanionConfigField,
 	// CompanionFeedbacks,
-	// CompanionPreset,
+	CompanionPreset,
 	CompanionSystem,
 } from '../../../instance_skel_types'
 import { Config } from './config'
@@ -11,17 +11,17 @@ import { getActions } from './actions'
 import { getConfigFields } from './config'
 import { HTTP } from './http'
 // import { getFeedbacks } from './feedback'
-// import { getUserPresets, getGlobalPresets, getSelectUsersPresets, getSpecialPresets, getPresetsWithArgs } from './presets'
+import { getPresets } from './presets'
 import { Variables } from './variables'
 interface bridge {
-	id: number,
-	running: boolean,
-	ready: boolean,
-	ndiName: string,
-	meetingName: string,
-	pinnedUserId: string,
-	fps: number,
-	resolution: number,
+	id: number
+	running: boolean
+	ready: boolean
+	ndiName: string
+	meetingName: string
+	pinnedUserId: string
+	fps: number
+	resolution: number
 	mode: string
 }
 
@@ -33,7 +33,6 @@ interface participant {
  * Companion instance class for Zoom
  */
 class ZoomBridgeInstance extends instance_skel<Config> {
-
 	// Global call settings
 	public ZoomBridgeClientDataObj: {
 		bridges: bridge[]
@@ -75,7 +74,7 @@ class ZoomBridgeInstance extends instance_skel<Config> {
 	 * @description triggered every time the config for this instance is saved
 	 */
 	public updateConfig(config: Config): void {
-		console.log('changing config!',config);
+		console.log('changing config!', config)
 		this.config = config
 		this.updateInstance()
 	}
@@ -92,7 +91,7 @@ class ZoomBridgeInstance extends instance_skel<Config> {
 	 */
 	public updateVariables(): void {
 		if (this.variables) {
-			console.log('update variables');
+			console.log('update variables')
 			this.variables.updateDefinitions()
 			this.variables.updateVariables()
 		}
@@ -105,17 +104,11 @@ class ZoomBridgeInstance extends instance_skel<Config> {
 		// Cast actions and feedbacks from Zoom types to Companion types
 		const actions = getActions(this) as CompanionActions
 		// const feedbacks = getFeedbacks(this) as CompanionFeedbacks
-		// const presets = [
-		// 	...getSelectUsersPresets(this),
-		// 	...getUserPresets(this),
-		// 	...getGlobalPresets(this),
-		// 	...getSpecialPresets(this),
-		// 	...getPresetsWithArgs(this),
-		// ] as CompanionPreset[]
+		const presets = [...getPresets(this)] as CompanionPreset[]
 
 		this.setActions(actions)
 		// this.setFeedbackDefinitions(feedbacks)
-		// this.setPresetDefinitions(presets)
+		this.setPresetDefinitions(presets)
 		this.updateVariables()
 	}
 }
