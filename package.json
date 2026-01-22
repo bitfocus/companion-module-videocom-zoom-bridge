@@ -30,7 +30,7 @@
 	],
 	"dependencies": {
 		"@types/lodash": "^4.14.178",
-		"lodash": "^4.17.21",
+		"lodash": "^4.17.23",
 		"urllib": "^3.0.4"
 	},
 	"devDependencies": {
